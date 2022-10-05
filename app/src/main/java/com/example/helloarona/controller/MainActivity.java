@@ -125,14 +125,6 @@ public class MainActivity extends AppCompatActivity {
         displayToast(getString(R.string.science));
     }
 
-    /**
-     * Shows a message that the litterature image was clicked.
-     */
-    public void showLitterature(View view) {
-        displayToast(getString(R.string.litterature));
-    }
-
-
     public void onRadioButtonClicked(View view) {
         // Is the button now checked?
         boolean checked = ((RadioButton) view).isChecked();

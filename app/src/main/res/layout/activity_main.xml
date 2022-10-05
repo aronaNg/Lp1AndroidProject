@@ -20,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="onRadioButtonClicked"
-        android:text="Monsieur" />
+        android:text="@string/monsieur" />
 
     <RadioButton
         android:id="@+id/madame"
@@ -51,19 +51,11 @@
 
     <ImageView
         android:id="@+id/science"
-        android:layout_width="203dp"
+        android:layout_width="match_parent"
         android:layout_height="183dp"
         android:contentDescription="@string/science"
         android:onClick="showScience"
         app:srcCompat="@drawable/science2" />
-
-    <ImageView
-        android:id="@+id/litterature"
-        android:layout_width="205dp"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/litterature"
-        android:onClick="showLitterature"
-        app:srcCompat="@drawable/liit" />
 
 
 </LinearLayout>
