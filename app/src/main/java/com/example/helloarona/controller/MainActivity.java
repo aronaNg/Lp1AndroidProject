@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
         // Is the button now checked?
         boolean checked = ((RadioButton) view).isChecked();
         // Check which radio button was clicked.
-        switch (view.getId()) {
+     /*   switch (view.getId()) {
             case R.id.monsieur:
                 if (checked)
                     // Same day service
@@ -141,8 +141,17 @@ public class MainActivity extends AppCompatActivity {
                     displayToast(getString(R.string.ah_vous_etes_une_femme));
                 break;
             default:
-                // Do nothing.
                 break;
+        }*/
+        // http://tools.android.com/tips/non-constant-fields
+        int id = view.getId();
+        if(id == R.id.monsieur){
+            if(checked)
+                displayToast("Vous êtes un homme");
+        }
+        else if(id == R.id.madame){
+            if(checked)
+                displayToast("Vous êtes une femme");
         }
 
     }

@@ -150,7 +150,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private QuestionBank generateQuestions() {
-        Question question1 = new Question("Quel est le nom du président du Sénégal actuellement",
+        Question question1 = new Question("Quel est le nom du président actuel du Sénégal ?",
                 Arrays.asList("Abdoulaye Wade", "Moustapha Diop", "Macky Sall", "Senghor"),
                 2);
 
@@ -163,7 +163,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                 0);
 
         Question question4 = new Question("Comment s'appelle le prof d'Android de l'iut ?",
-                Arrays.asList("M.Perrot", "M.Couturier", "Mmm Deschinkel", "M.Laymani"),
+                Arrays.asList("M.Perrot", "M.AZAR", "Mme Deschinkel", "M.Laymani"),
                 1);
 
         Question question5 = new Question("Quelle est la capitale du Sénégal ?",
