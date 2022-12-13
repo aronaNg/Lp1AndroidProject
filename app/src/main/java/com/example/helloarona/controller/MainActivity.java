@@ -1,5 +1,9 @@
 package com.example.helloarona.controller;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -13,6 +17,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import com.example.helloarona.R;
 import com.example.helloarona.model.User;
@@ -48,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         mPlayButton = (Button) findViewById(R.id.activity_main_play_btn);
 
         mPlayButton.setEnabled(false);
-
+        showNotification();
         greetUser();
 
         mNameInput.addTextChangedListener(new TextWatcher() {
@@ -78,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
                 mPreferences.edit().putString(PREF_KEY_FIRSTNAME, mUser.getFirstname()).apply();
 
                 Intent gameActivityIntent = new Intent(MainActivity.this, GameActivity.class);
+
                 startActivityForResult(gameActivityIntent, GAME_ACTIVITY_REQUEST_CODE);
             }
         });
@@ -94,6 +101,28 @@ public class MainActivity extends AppCompatActivity {
 
             greetUser();
         }
+    }
+
+    void showNotification() {
+        NotificationManager mNotificationManager =
+                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel("YOUR_CHANNEL_ID",
+                    "YOUR_CHANNEL_NAME",
+                    NotificationManager.IMPORTANCE_DEFAULT);
+            channel.setDescription("YOUR_NOTIFICATION_CHANNEL_DESCRIPTION");
+            mNotificationManager.createNotificationChannel(channel);
+        }
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getApplicationContext(), "YOUR_CHANNEL_ID")
+                .setSmallIcon(R.drawable.notif) // notification icon
+                .setContentTitle("My notificationMy notification") // title for notification
+                .setContentText("My notification My notificationMy notificationcontent")// message for notification
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setAutoCancel(true); // clear notification after click
+        Intent intent = new Intent(getApplicationContext(), GameActivity.class);
+        PendingIntent pi = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        mBuilder.setContentIntent(pi);
+        mNotificationManager.notify(0, mBuilder.build());
     }
 
     private void greetUser() {
